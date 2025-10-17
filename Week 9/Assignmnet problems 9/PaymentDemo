@@ -1,0 +1,36 @@
+interface Discount {
+    double apply(double amount);
+}
+
+class Payment {
+    void processTransaction(double amount) {
+        // Local Inner Class
+        class Validator {
+            boolean isValid(double amt) {
+                return amt > 0;
+            }
+        }
+
+        Validator validator = new Validator();
+        if (validator.isValid(amount)) {
+            // Anonymous Inner Class
+            Discount discount = new Discount() {
+                public double apply(double amt) {
+                    return amt * 0.9; // 10% discount
+                }
+            };
+
+            double finalAmount = discount.apply(amount);
+            System.out.println("Payment of " + finalAmount + " processed successfully!");
+        } else {
+            System.out.println("Invalid amount!");
+        }
+    }
+}
+
+public class PaymentDemo {
+    public static void main(String[] args) {
+        Payment payment = new Payment();
+        payment.processTransaction(1000);
+    }
+}

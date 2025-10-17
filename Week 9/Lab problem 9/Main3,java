@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Student {
+    int id;
+    String name;
+
+    Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Student)) return false;
+        Student s = (Student) obj;
+        return id == s.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Student{id=" + id + ", name='" + name + "'}";
+    }
+}
+
+public class Main3 {
+    public static void main(String[] args) {
+        HashSet<Student> set = new HashSet<>();
+        set.add(new Student(1, "A"));
+        set.add(new Student(2, "B"));
+        set.add(new Student(1, "A")); // duplicate by id
+
+        System.out.println("HashSet: " + set);
+    }
+}

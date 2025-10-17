@@ -1,0 +1,59 @@
+abstract class Shape {
+    public abstract double area();
+    public abstract double perimeter();
+
+    public void displayInfo() {
+        System.out.println("This is a shape.");
+    }
+}
+
+class Circle extends Shape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double area() {
+        return Math.PI * radius * radius;
+    }
+
+    @Override
+    public double perimeter() {
+        return 2 * Math.PI * radius;
+    }
+}
+
+class Rectangle extends Shape {
+    private double length, breadth;
+
+    public Rectangle(double length, double breadth) {
+        this.length = length;
+        this.breadth = breadth;
+    }
+
+    @Override
+    public double area() {
+        return length * breadth;
+    }
+
+    @Override
+    public double perimeter() {
+        return 2 * (length + breadth);
+    }
+}
+
+public class ShapeDemo {
+    public static void main(String[] args) {
+        Shape circle = new Circle(5);
+        circle.displayInfo();
+        System.out.println("Circle Area: " + circle.area());
+        System.out.println("Circle Perimeter: " + circle.perimeter());
+
+        Shape rect = new Rectangle(4, 6);
+        rect.displayInfo();
+        System.out.println("Rectangle Area: " + rect.area());
+        System.out.println("Rectangle Perimeter: " + rect.perimeter());
+    }
+}
